@@ -96,17 +96,23 @@ void listar(int cont, struct tarefas *t){
 //Funcao que lista as tarefas e suas informacoes para o usuario. Utiliza um laco for com a variavel "x" para iterar sobre a lista de struct, e assim, fornece ao usuario todas as tarefas que estão registradas de maneira
 //organizada. Também mostrando para o usuario o numero da tarefa, (por meio da expressao "x+1"), facilitando a utilizacao da funcao de deletar tarefas.
 
-int le_binario(struct tarefas *t) {
-    FILE *arquivo_binario = fopen("binario.txt", "rb");
-    int y = 0;
+int le_binario(struct tarefas *t, int *cont) {
+    FILE *arquivo_binario;
+    arquivo_binario = fopen("binario", "rb");
     if (arquivo_binario) {
-        while (fread(&t[y], sizeof(struct tarefas), 1, arquivo_binario) == 1) {
-            y++;
-        }
-        return y;
 
+        fread(cont, sizeof(int), 1, arquivo_binario);
+        //printf("%d\n", *cont);
+
+
+
+        fread(t, sizeof(struct tarefas), 100, arquivo_binario);
+
+        return 0;
     }
-    return 0;
+    else{
+        return 1;
+    }
 }
 
 
@@ -118,15 +124,21 @@ int le_binario(struct tarefas *t) {
 
 void escreve_binario(struct tarefas *t, int cont) {
     FILE *arquivo_binario;
-    arquivo_binario = fopen("binario.txt", "wb");
+    arquivo_binario = fopen("binario", "wb");
     //printf("%p\n", arquivo_binario);
     if (arquivo_binario) {
         //printf("entrou\n");
 
         //printf("%d\n", t->prioridade);
-        fwrite(t, sizeof(struct tarefas), cont, arquivo_binario);
+        fwrite(&cont, sizeof(int), 1, arquivo_binario);
+
+
+        fwrite(t, sizeof(struct tarefas), 100, arquivo_binario);
 
         fclose(arquivo_binario);
+    }
+    else{
+        printf("Erro ao abrir o arquivo\n");
     }
 
 }
