@@ -7,7 +7,7 @@ int main() {
 
     struct tarefas t[100];
     int cont = 0;
-    cont = le_binario(t);
+    le_binario(t, &cont);
     int posicao = 0;
     //Variaveis utilizadas no programa, juntamente com a chamada da funcao que abre e le o arquivo binario assim que o programa é iniciado, ja salvando as informacoes do usuario na lista de struct.
 
