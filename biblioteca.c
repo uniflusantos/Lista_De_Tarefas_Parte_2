@@ -16,6 +16,7 @@ void limpa_buffer(){
 void le_valores(struct tarefas *armazena) {
 
     int var_prioridade;
+    int var_estado;
     do{
         printf("Digite a prioridade: ");
         scanf("%d", &var_prioridade);
@@ -32,6 +33,17 @@ void le_valores(struct tarefas *armazena) {
     limpa_buffer();
     printf("Digite a descricao: ");
     scanf("%[^\n]", armazena->descricao);
+    limpa_buffer();
+    do{
+        printf("Digite o estado da tarefa: \n");
+        printf("1 - Nao Iniciada\n2 - Em Andamento\n3 - Completa\n");
+        scanf("%d", &var_estado);
+
+        if(var_estado < 1 || var_estado > 3){
+            printf("Input invalido. Entre com um valor entre 1 e 3.");
+        }
+    } while (var_estado < 1 || var_estado > 3);
+    armazena->estado = var_estado;
     limpa_buffer();
 }
 
@@ -88,7 +100,16 @@ void listar(int cont, struct tarefas *t){
         printf("Tarefa %d\n", x+1);
         printf("Nivel de prioridade: %d\n",t[x].prioridade);
         printf("Categoria: %s\n",t[x].categoria );
-        printf("Descricao: %s\n\n",t[x].descricao);
+        printf("Descricao: %s\n",t[x].descricao);
+        if(t[x].estado == 1){
+            printf("Estado: Tarefa nao iniciada\n\n");
+        }
+        if(t[x].estado == 2){
+            printf("Estado: Em Andamento\n\n");
+        }
+        if(t[x].estado == 3){
+            printf("Estado: Tarefa completa\n\n");
+        }
     }
 }
 
