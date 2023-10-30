@@ -1,2 +1,5 @@
-# Lista_De_Tarefas_Parte_2
-Parte 2 do projeto lista de tarefas.
+# Projeto Lista de Tarefas - Parte 2
+A parte do projeto de Lista Tarefas consiste em um programa simples, feito na linguagem C, que permite o usuário criar uma lista de tarefas e iterar sobre ela de várias maneiras. O programa trabalha com 6 funções: Registrar tarefas, Deletar tarefas, Listar tarefas (com uma função embutida de filtrar tarefas, listando apenas as tarefas que passarem pelos filtros passados para o programa pelo usuário), Exportar tarefas, Alterar tarefas e uma função para sair do programa. Além disso, o programa também salva todos os dados em um arquivo binário, que é lido na inicialização do código, e exporta as tarefas para um arquivo separado .txt caso seja solicitado pelo usuário.
+Três arquivos foram utilizados para o desenvolvimento do código, o arquivo main.C, que roda o menu do progarma em um laço while True e possui a chamada das funções desenvolvidas no arquivo biblioteca.c e declaradas no arquivo biblioteca.h. O arquivo biblioteca.c, que que possui o código de execução de todas as funções que são chamadas no programa. E o arquivo biblioteca.h, que possui a declaração de todas as funções desenvolvidas no arquivo biblioteca.c e que são chamadas no arquivo main.c.
+Para poder executar o código, basta realizar o download dos arquivos ou clonar o repositório pelo Github e executá-lo em qualquer IDE que suporte a linguagem C.
+A execução fornece instruções de como utilizar cada função do programa, e os comentários explicam como cada parte do código funciona.
