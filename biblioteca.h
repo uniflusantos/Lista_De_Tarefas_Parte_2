@@ -19,10 +19,10 @@ void limpa_buffer();
 void le_valores(struct tarefas *armazena);
 //Declarao da funcao que le e armazena informacoes nas variaveis apropriadas, utilizando de parametro a struct tarefas.
 
-int deletar(int posicao, int cont, struct tarefas *t);
+int deletar(int cont, struct tarefas *t);
 //Declaracao da funcao que deleta tarefas pelo usuario, utilizando de parametros as variaveis posicao, cont e *t.
 
-void listar(int cont, struct tarefas *t);
+int listar(int cont, struct tarefas *t);
 //Declaracao da funcao que lista as tarefas registradas para o usuario, utilizando de parametros as variaveis e cont e *t.
 
 int le_binario(struct tarefas *t, int *cont);
