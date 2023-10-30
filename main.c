@@ -46,7 +46,7 @@ int main() {
         } else if (opcao == 2) {
             printf("Voce entrou na funcao deletar tarefas.\n\n");
             printf("Entre o numero da tarefa que deseja deletar : ");
-            int verifica = deletar(posicao, cont, t);
+            int verifica = deletar(cont, t);
             if (verifica == 0) {
                 cont--;
             }
@@ -58,7 +58,7 @@ int main() {
 
         else if (opcao == 3) {
             //printf("%d\n", tarefas.prioridade); (debug)
-            printf("Lista de tarefas\n\n");
+            printf("Voce entrou na funcao de listar tarefas.\n\n");
             //printf("%d\n",cont); (debug)
             listar(cont, t);
         }
