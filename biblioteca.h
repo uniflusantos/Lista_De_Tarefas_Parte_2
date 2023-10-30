@@ -25,6 +25,8 @@ int deletar(int cont, struct tarefas *t);
 int listar(int cont, struct tarefas *t);
 //Declaracao da funcao que lista as tarefas registradas para o usuario, utilizando de parametros as variaveis e cont e *t.
 
+void exportar_tarefas(int cont, struct tarefas *t);
+
 int le_binario(struct tarefas *t, int *cont);
 //Declaracao da funcao que le o arquivo binario com as informacoes registradas pelo usuario, utilizando de parametro a variavel *t.
 

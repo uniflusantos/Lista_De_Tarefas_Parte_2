@@ -53,6 +53,7 @@ void le_valores(struct tarefas *armazena) {
 //valor de prioridade que atenda ao intervalo entre 0 e 10.
 
 int deletar(int cont, struct tarefas *t){
+    printf("Entre o numero da tarefa que deseja deletar: ");
 
     int posicao;
     char *p_posicao, s_posicao[100];
@@ -267,7 +268,171 @@ int listar(int cont, struct tarefas *t) {
     return 0;
 }
 
+void exportar_tarefas(int cont, struct tarefas *t){
+    if(cont == 0){
+        printf("Voce nao possui tarefas registradas.");
+    }
+    int exportar;
+    int verifica = 0;
+    do {
+        printf("Escolha como deseja listar as tarefas: \n");
+        printf("1 - Exportar por ordem de adicao\n");
+        printf("2 - Exportar por prioridade\n");
+        printf("3 - Exportar por estado\n");
+        printf("4 - Exportar por categoria\n");
+        printf("5 - Exportar por prioridade e categoria\n");
+        scanf("%d", &exportar);
+        if (exportar < 1 || exportar > 5) {
+            printf("Input invalido. Entre com um valor inteiro entre 1 e 5");
+        }
+    } while (exportar < 1 || exportar > 5);
 
+    FILE *f = fopen("tarefas.txt", "wb");
+    fprintf(f, "Tarefas Exportadas: \n\n");
+
+    if (exportar == 1) {
+        for (int x = 0; x < cont; x++) {
+            fprintf(f,"Tarefa %d\n", x + 1);
+            fprintf(f,"Nivel de prioridade: %d\n", t[x].prioridade);
+            fprintf(f,"Categoria: %s\n", t[x].categoria);
+            fprintf(f,"Descricao: %s\n", t[x].descricao);
+            if (t[x].estado == 1) {
+                fprintf(f,"Estado: Tarefa nao iniciada\n\n");
+            }
+            if (t[x].estado == 2) {
+                fprintf(f,"Estado: Em Andamento\n\n");
+            }
+            if (t[x].estado == 3) {
+                fprintf(f,"Estado: Tarefa completa\n\n");
+            }
+        }
+        fclose(f);
+        limpa_buffer();
+
+    } else if (exportar == 2) {
+        int var_prioridade;
+        printf("Entre com a prioridade que deseja utilizar para filtrar as tarefas: \n");
+        scanf("%d", &var_prioridade);
+        limpa_buffer();
+        for (int x = 0; x < cont; x++) {
+            if (var_prioridade == t[x].prioridade) {
+                verifica++;
+                fprintf(f,"Tarefa %d\n", x + 1);
+                fprintf(f,"Nivel de prioridade: %d\n", t[x].prioridade);
+                fprintf(f,"Categoria: %s\n", t[x].categoria);
+                fprintf(f,"Descricao: %s\n", t[x].descricao);
+                if (t[x].estado == 1) {
+                    fprintf(f,"Estado: Tarefa nao iniciada\n\n");
+                }
+                if (t[x].estado == 2) {
+                    fprintf(f,"Estado: Em Andamento\n\n");
+                }
+                if (t[x].estado == 3) {
+                    fprintf(f,"Estado: Tarefa completa\n\n");
+                }
+            }
+            else if(x == cont - 1 && verifica == 0){
+                printf("Voce nao possui nenhuma tarefa registrada com essa prioridade.\n\n");
+            }
+        }
+        fclose(f);
+    }
+
+    else if (exportar == 3) {
+        int var_estado;
+        printf("Entre com o estado que deseja utilizar para filtrar as tarefas: \n");
+        printf("1 - Nao Iniciada\n2 - Em Andamento\n3 - Completa\n");
+        scanf("%d", &var_estado);
+        limpa_buffer();
+        for (int x = 0; x < cont; x++) {
+            if (var_estado == t[x].estado) {
+                verifica++;
+                fprintf(f,"Tarefa %d\n", x + 1);
+                fprintf(f,"Nivel de prioridade: %d\n", t[x].prioridade);
+                fprintf(f,"Categoria: %s\n", t[x].categoria);
+                fprintf(f,"Descricao: %s\n", t[x].descricao);
+                if (t[x].estado == 1) {
+                    fprintf(f,"Estado: Tarefa nao iniciada\n\n");
+                }
+                if (t[x].estado == 2) {
+                    fprintf(f,"Estado: Em Andamento\n\n");
+                }
+                if (t[x].estado == 3) {
+                    fprintf(f,"Estado: Tarefa completa\n\n");
+                }
+            }
+            else if(x == cont - 1 && verifica == 0){
+                printf("Voce nao possui nenhuma tarefa registrada com esse estado.\n\n");
+            }
+        }
+        fclose(f);
+    }
+
+    else if (exportar == 4){
+        char categoria_[100];
+        printf("Entre com a categoria que deseja utilizar para filtrar as tarefas: \n");
+        scanf("%s", categoria_);
+        limpa_buffer();
+        for(int x = 0; x < cont; x++){
+            int r = strcmp(categoria_, t[x].categoria);
+            if (r == 0){
+                verifica++;
+                fprintf(f,"Tarefa %d\n", x + 1);
+                fprintf(f,"Nivel de prioridade: %d\n", t[x].prioridade);
+                fprintf(f,"Categoria: %s\n", t[x].categoria);
+                fprintf(f,"Descricao: %s\n", t[x].descricao);
+                if (t[x].estado == 1) {
+                    fprintf(f,"Estado: Tarefa nao iniciada\n\n");
+                }
+                if (t[x].estado == 2) {
+                    fprintf(f,"Estado: Em Andamento\n\n");
+                }
+                if (t[x].estado == 3) {
+                    fprintf(f,"Estado: Tarefa completa\n\n");
+                }
+            }
+            else if(x == cont - 1 && verifica == 0){
+                printf("Voce nao possui nenhuma tarefa registrada com essa categoria.\n\n");
+            }
+        }
+        fclose(f);
+    }
+
+    else if (exportar == 5){
+        int var_prioridade;
+        char categoria_[100];
+        printf("Entre com a prioridade que deseja utilizar para filtrar as tarefas: \n");
+        scanf("%d", &var_prioridade);
+        limpa_buffer();
+        printf("Entre com a categoria que deseja utilizar para filtrar as tarefas: \n");
+        scanf("%s", categoria_);
+        limpa_buffer();
+        for(int x = 0; x < cont; x++){
+            int r = strcmp(categoria_, t[x].categoria);
+            if(var_prioridade == t[x].prioridade && r == 0){
+                verifica++;
+                fprintf(f,"Tarefa %d\n", x + 1);
+                fprintf(f,"Nivel de prioridade: %d\n", t[x].prioridade);
+                fprintf(f,"Categoria: %s\n", t[x].categoria);
+                fprintf(f,"Descricao: %s\n", t[x].descricao);
+                if (t[x].estado == 1) {
+                    fprintf(f,"Estado: Tarefa nao iniciada\n\n");
+                }
+                if (t[x].estado == 2) {
+                    fprintf(f,"Estado: Em Andamento\n\n");
+                }
+                if (t[x].estado == 3) {
+                    fprintf(f,"Estado: Tarefa completa\n\n");
+                }
+            }
+            else if(x == cont - 1 && verifica == 0){
+                printf("Voce nao possui nenhuma tarefa registrada com essa prioridade e com essa categoria simultaneamente.\n\n");
+            }
+        }
+        fclose(f);
+    }
+
+}
 
 //Funcao que lista as tarefas e suas informacoes para o usuario. Utiliza um laco for com a variavel "x" para iterar sobre a lista de struct, e assim, fornece ao usuario todas as tarefas que estão registradas de maneira
 //organizada. Também mostrando para o usuario o numero da tarefa, (por meio da expressao "x+1"), facilitando a utilizacao da funcao de deletar tarefas.
