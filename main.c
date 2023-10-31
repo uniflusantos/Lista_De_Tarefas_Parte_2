@@ -18,7 +18,8 @@ int main() {
         printf(" 2 - Deletar tarefa: \n");
         printf(" 3 - Listar tarefas: \n");
         printf(" 4 - Exportar Tarefas: \n");
-        printf(" 5 - Sair\n");
+        printf(" 5 - Alterar Tarefas: \n");
+        printf(" 6 - Sair\n");
         printf("Digite o numero da opcao que deseja usar: \n");
 
         //Funcao do menu de tarefas, roda em while infinito mostrando o menu para o usuario printando as funcoes disponiveis, ate o usuario optar por sair.
@@ -65,17 +66,22 @@ int main() {
             //Funcao que lista tarefas. Chama a funcao "listar", que, como explicado no biblioteca.c, itera sobre a lista de struct e mostra para o usuario todas as informacoes registradas no programa de maneira organizada.
 
 
-        else if (opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4  && opcao != 5 || p == s_opcao || *p != '\n') {
+        else if (opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4  && opcao != 5 && opcao != 6 || p == s_opcao || *p != '\n') {
             printf("Input invalido. Entre somente com valores inteiros entre 1 e 4.\n\n");
         }
             //Print que informa o usuario que entrou com uma opcao nao disponivel pelo programa.
 
         else if (opcao == 4){
-            printf("Voce entrou na funcao de exportar tarefas.\n\n");
+            printf("Voce entrou na funcao de exportar tarefas.\n\n");              
             exportar_tarefas(cont, t);
         }
 
-        else if (opcao == 5) {
+        else if (opcao == 5){
+          printf("Voce entrou na funcao de alterar tarefas.\n\n");
+          alterar_tarefas(cont, t);
+        }
+
+        else if (opcao == 6) {
             escreve_binario(t, cont);
             printf("Saindo do programa");
             break;
