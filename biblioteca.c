@@ -49,7 +49,7 @@ void le_valores(struct tarefas *armazena) {
 
 //Funcao que recebe as informacoes do usuario e as armazena na variavel apropriada. O programa recebe os inputs por meio da funcao "scanf" e a funcao "armazena" guarda as informacoes nas variaveis da struct. Utilizamos a
 //funcao limpa buffer depois de cada scanf para evitar erros no armazenamento e leitura das informacoes. A funcao tambem utiliza um laco "do while" para impedir que o usuario entre com valores abaixo de 0 ou acima de 10
-//no campo de prioridade, uma vez que o programa so trabalha com valores nesse intervalo para essa variavel. Caso o usuario entre com um input invalido nesse campo, o programa ira pedir novamente para que entre com outro
+//no campo de prioridade, ou abaixo de 0 e maior do que 4 no campo de estado, uma vez que o programa so trabalha com valores nesse intervalo para essas variaveis. Caso o usuario entre com um input invalido nesse campos, o programa ira pedir novamente para que entre com outro
 //valor de prioridade que atenda ao intervalo entre 0 e 10.
 
 int deletar(int cont, struct tarefas *t){
@@ -101,6 +101,7 @@ int listar(int cont, struct tarefas *t) {
         printf("Voce nao possui nenhuma tarefa registrada.\n\n");
         return 1;
     }
+    //Condicao que informa o usuario que nao possui nenhuma conta registrada, logo, nao há contas para listar.
     int filtrar;
     int verifica = 0;
     do {
@@ -116,7 +117,8 @@ int listar(int cont, struct tarefas *t) {
         }
     } while (filtrar < 1 || filtrar > 5);
     limpa_buffer();
-
+    //Menu que informa ao usuario todos as opcoes de filtragem disponiveis para verificar suas tarefas. Possui uma condicao com do while em que, caso o usuario entre com um valor abaixo de 1 ou acima de 5, o programa ira pedir novamente para entrar com um valor dentro do intervalo permitido.
+    
     if (filtrar == 1) {
         printf("Lista de tarefas: \n\n");
         for (int x = 0; x < cont; x++) {
@@ -136,6 +138,9 @@ int listar(int cont, struct tarefas *t) {
         }
         return 0;
 
+    //Condicao que filtra as tarefas por ordem de adicao, demonstrando todas as tarefas registradas para o usuario na ordem em que foram adicionadas ao programa. Para isso, o laco for for itera sobre a lista de struct e printa todas as tarefas na ordem em que foram adicionadas, mostrando para o usuario todos os
+    //campos que registrou (Prioridade, Categoria, Descrição e Estado), os laços if identificam qual estado o usuario registrou para a tarefa.    
+        
     } else if (filtrar == 2) {
         int var_prioridade;
         do{
@@ -173,6 +178,8 @@ int listar(int cont, struct tarefas *t) {
         }
         return 0;
     }
+
+        
 
     else if (filtrar == 3) {
         int var_estado;
