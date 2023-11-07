@@ -63,22 +63,24 @@ int main() {
             //printf("%d\n",cont); (debug)
             listar(cont, t);
         }
-            //Funcao que lista tarefas. Chama a funcao "listar", que, como explicado no biblioteca.c, itera sobre a lista de struct e mostra para o usuario todas as informacoes registradas no programa de maneira organizada.
+            //Funcao que lista tarefas. Chama a funcao "listar", que, como explicado no biblioteca.c, itera sobre a lista de struct e mostra para o usuario as informacoes registradas no programa de maneira organizada, com o usuario podendo filtrar quais tarefas quer listar.
 
 
         else if (opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4  && opcao != 5 && opcao != 6 || p == s_opcao || *p != '\n') {
             printf("Input invalido. Entre somente com valores inteiros entre 1 e 4.\n\n");
         }
-            //Print que informa o usuario que entrou com uma opcao nao disponivel pelo programa.
+            //Print que informa o usuario que entrou com uma opcao nao disponivel pelo programa e retorna ao menu.
 
         else if (opcao == 4){
             printf("Voce entrou na funcao de exportar tarefas.\n\n");              
             exportar_tarefas(cont, t);
         }
+            //Funcao que exporta tarefas para um arquivo .txt a parte. Chama a funcao 'exportar_tarefas', que, como explicado no biblioteca.c, itera sobre a lista de struct e exporta para o usuario as informacoes registradas no programa de maneira organizada, com o usuario podendo filtrar quais tarefas deseja exportar.
 
         else if (opcao == 5){
           printf("Voce entrou na funcao de alterar tarefas.\n\n");
           alterar_tarefas(cont, t);
+            //Funcao que permite ao usuario alterar as variaveis das tarefas que possui registradas. Chama a funcao 'alterar_tarefas", que, como explicado no biblioteca.c, itera sobre a lista de struct, procurando qual tarefa o usuario deseja alterar e depois permite ao usuario escolher qual campo deseja alterar e como/para o que esse campo deve ser alterado.
         }
 
         else if (opcao == 6) {
