@@ -478,19 +478,22 @@ void exportar_tarefas(int cont, struct tarefas *t){
 
 }
 
-void alterar_tarefas(int cont, struct tarefas *t){
+int alterar_tarefas(int cont, struct tarefas *t){
     int posicao;
     printf("Digite qual tarefa deseja alterar: \n");
     scanf("%d", &posicao);
     limpa_buffer();
     if(posicao <= 0 && cont > 1 || posicao > cont && cont > 1){
         printf("Numero invalido! Entre um numero entre 1 e %d\n\n", cont);
+        return 1;
     }
     else if(posicao <= 0 && cont == 1 || posicao > cont && cont == 1){
         printf("Numero invalido! Voce tem somente 1 tarefa registrada.\n\n");
+        return 1;
     }
     else if(cont == 0){
         printf("Voce nao possui nenhuma tarefa registrada.\n\n");
+        return 1;
     }
 
     int var_alterar;
@@ -522,6 +525,7 @@ void alterar_tarefas(int cont, struct tarefas *t){
             if(x == posicao - 1){
                 t[x].prioridade = var_prioridade;
                 printf("Prioridade alterada com sucesso!\n\n");
+                return 0;
             }
         }
     }
@@ -534,6 +538,7 @@ void alterar_tarefas(int cont, struct tarefas *t){
             if(x == posicao - 1){
                 strcpy(t[x].categoria , categoria_);
                 printf("Categoria alterada com sucesso!\n\n");
+                return 0;
             }
         }
     }
@@ -546,6 +551,7 @@ void alterar_tarefas(int cont, struct tarefas *t){
             if(x == posicao - 1){
                 strcpy(t[x].descricao , descricao_);
                 printf("Descricao alterada com sucesso!\n\n");
+                return 0;
             }
         }
     }
@@ -567,6 +573,7 @@ void alterar_tarefas(int cont, struct tarefas *t){
             }
         }
     }
+  return 0;
 }
 
 //Funcao de alterar tarefas.
