@@ -27,7 +27,7 @@ int listar(int cont, struct tarefas *t);
 
 void exportar_tarefas(int cont, struct tarefas *t);
 
-void alterar_tarefas(int cont, struct tarefas *t);
+int alterar_tarefas(int cont, struct tarefas *t);
 
 int le_binario(struct tarefas *t, int *cont);
 //Declaracao da funcao que le o arquivo binario com as informacoes registradas pelo usuario, utilizando de parametro a variavel *t.
