@@ -362,7 +362,10 @@ void exportar_tarefas(int cont, struct tarefas *t){
         fclose(f);
         limpa_buffer();
 
-    } else if (exportar == 2) {
+        //Condicao que exporta as tarefas para um arquivo .txt por ordem de adicao. demonstrando todas as tarefas registradas para o usuario na ordem em que foram adicionadas ao programa. Para isso, o laco for for itera sobre a lista de struct e printa todas as tarefas na ordem em que foram adicionadas, mostrando 
+        //para o usuario todos os campos que registrou (Prioridade, Categoria, Descrição e Estado), os laços if identificam qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros no armazenamento e leitura dos valores do scanf.
+        
+        } else if (exportar == 2) {
         int var_prioridade;
         do{
             printf("Entre com a prioridade que deseja utilizar para exportar as tarefas: \n");
