@@ -139,7 +139,7 @@ int listar(int cont, struct tarefas *t) {
         return 0;
 
     //Condicao que filtra as tarefas por ordem de adicao, demonstrando todas as tarefas registradas para o usuario na ordem em que foram adicionadas ao programa. Para isso, o laco for for itera sobre a lista de struct e printa todas as tarefas na ordem em que foram adicionadas, mostrando para o usuario todos os
-    //campos que registrou (Prioridade, Categoria, Descrição e Estado), os laços if identificam qual estado o usuario registrou para a tarefa.    
+    //campos que registrou (Prioridade, Categoria, Descrição e Estado), os laços if identificam qual estado o usuario registrou para cada tarefa.    
         
     } else if (filtrar == 2) {
         int var_prioridade;
@@ -178,6 +178,9 @@ int listar(int cont, struct tarefas *t) {
         }
         return 0;
     }
+        //Condicao que filtra as tarefas por prioridade. Funciona com um laco 'do while' pedindo ao usuario qual valor de prioridade deseja utilizar para listar as tarefas, caso o usuario entre com algum valor invalido de prioridade, o programa ira pedir o input de novo. O laco for itera sobre a lista de struct e, 
+        //por meio da condicao if, printa todas as tarefas que possuam a prioridade solicitada pelo usuario, com os lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf. A condicao else if informa o
+        //usuario que ele nao possui nenhuma tarefa registrada com a prioridade solicitada.
 
         
 
@@ -218,6 +221,9 @@ int listar(int cont, struct tarefas *t) {
         }
         return 0;
     }
+        //Condicao que filtra as tarefas por estado. Tambem utiliza um laco 'do while' pedindo ao usuario qual valor de estado deseja utilizar para listar as tarefas, caso o usuario entre com algum valor invalido, o programa ira pedir o input de novo. O laco for itera sobre a lista de struct e, por meio da condicao
+        //if, printa todas as tarefas que possuam o estado solicitado pelo usuario, com os lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf. A condicao else if informa o usuario que ele nao possui
+        //nenhuma tarefa registrada com o estado solicitado.
 
     else if (filtrar == 4){
         char categoria_[100];
@@ -249,12 +255,18 @@ int listar(int cont, struct tarefas *t) {
 
             }
         }
+
+            //Condicao que filtra as tarefas por categoria. Solicita ao usuario qual categoria deseja utilizar para filtrar as tarefas e trabalha com dois lacos for, um que itera sobre a lista de struct printando as tarefas com a categoria solicitada pelo usuario e outro que ira realizar esse print de maneira que
+            //as tarefas sejam listadas em ordem de prioridade decrescente (da maior para menor), a condicao if é aplicada para ambos os lacos for, com os lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do 
+            //scanf.
+        
         if(verifica == 0){
             printf("Voce nao tem nenhuma tarefa registrada com essa categoria.\n\n");
             return 1;
         }
         return 0;
     }
+            //Condicao que informa o usuario que nao existe nenhuma tarefa registrada com a categoria que solicitou.
 
     else if (filtrar == 5){
         int var_prioridade;
@@ -298,11 +310,17 @@ int listar(int cont, struct tarefas *t) {
     }
     return 0;
 }
+            //Condicao que filtra as tarefas por prioridade e categoria. Funcionando como uma juncao das condicoes 2 e 4, funciona com um laco 'do while' solicitando ao usuario que entre com a prioridade que deseja utilizar para filtrar as tarefas, em que, caso o usuario entre com um valor invalido para prioridade,
+            //o programa ira solicitar o valor novamente, e depois solicita ao usuario qual categoria deseja utilizar para filtrar. O laco 'for' itera sobre a lista de struct e, por meio da condicao if, lista para o usuario todas as tarefas que possuam a prioridade e a categoria solicitadas pelo usuario, com os
+            //lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf. A condicao else if, por fim, informa ao usuario que nao possui nenhuma tarefa registrada com a prioridade e/ou com a categoria
+            //solicitadas pelo usuario.
 
 void exportar_tarefas(int cont, struct tarefas *t){
     if(cont == 0){
         printf("Voce nao possui tarefas registradas.");
     }
+        //Condicao que informa o usuario que nao possui tarefas registradas para exportar.
+    
     int exportar;
     int verifica = 0;
     do {
@@ -317,9 +335,13 @@ void exportar_tarefas(int cont, struct tarefas *t){
             printf("Input invalido. Entre com um valor inteiro entre 1 e 5");
         }
     } while (exportar < 1 || exportar > 5);
+    
+    //Menu que informa ao usuario todos as opcoes de filtragem disponiveis para exportar suas tarefas. Possui uma condicao com do while em que, caso o usuario entre com um valor abaixo de 1 ou acima de 5, o programa ira pedir novamente para entrar com um valor dentro do intervalo permitido.
+    
 
     FILE *f = fopen("tarefas.txt", "wb");
     fprintf(f, "Tarefas Exportadas: \n\n");
+    //Declaracao do arquivo 'tarefas.txt' e 'abertura' do arquivo tarefas.txt, que exibira ao usuario as tarefas exportadas. O fprintf printara para o arquivo .txt a frase 'Tarefas Exportadas:'.
 
     if (exportar == 1) {
         for (int x = 0; x < cont; x++) {
