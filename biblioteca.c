@@ -399,6 +399,9 @@ void exportar_tarefas(int cont, struct tarefas *t){
         }
         fclose(f);
     }
+        //Condicao que exporta as tarefas filtrando-as por prioridade. Funciona com um laco 'do while' pedindo ao usuario qual valor de prioridade deseja utilizar para listar as tarefas, caso o usuario entre com algum valor invalido de prioridade, o programa ira pedir o input de novo. O laco for itera sobre a lista de struct  
+        //e, por meio da condicao if, exporta para um arquivo .txt todas as tarefas que possuam a prioridade solicitada pelo usuario, com os lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf. A condicao 
+        //else if informa o usuario caso ele nao possua nenhuma tarefa registrada com a prioridade solicitada.
 
     else if (exportar == 3) {
         int var_estado;
