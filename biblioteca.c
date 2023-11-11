@@ -451,13 +451,14 @@ int exportar_tarefas(int cont, struct tarefas *t){
 
     else if (exportar == 4){
         char categoria_[100];
+        limpa_buffer();
         printf("Entre com a categoria que deseja utilizar para exportar as tarefas: \n");
         scanf("%[^\n]", categoria_);
         limpa_buffer();
         for(int y = 10; y >= 0; y--){
             for(int x = 0; x < cont; x++){
                 int r = strcmp(categoria_, t[x].categoria);
-                if (r == 0){
+                if (r == 0 && y == t[x].prioridade){
                     verifica++;
                     fprintf(f,"Tarefa %d\n", x + 1);
                     fprintf(f,"Nivel de prioridade: %d\n", t[x].prioridade);
