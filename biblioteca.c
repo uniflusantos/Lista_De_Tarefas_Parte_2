@@ -315,9 +315,10 @@ int listar(int cont, struct tarefas *t) {
             //lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf. A condicao else if, por fim, informa ao usuario que nao possui nenhuma tarefa registrada com a prioridade e/ou com a categoria
             //solicitadas pelo usuario.
 
-void exportar_tarefas(int cont, struct tarefas *t){
+int exportar_tarefas(int cont, struct tarefas *t){
     if(cont == 0){
         printf("Voce nao possui tarefas registradas.");
+        return 1;
     }
         //Condicao que informa o usuario que nao possui tarefas registradas para exportar.
     
@@ -360,7 +361,7 @@ void exportar_tarefas(int cont, struct tarefas *t){
             }
         }
         fclose(f);
-        limpa_buffer();
+        return 0;
 
         //Condicao que exporta as tarefas para um arquivo .txt por ordem de adicao. demonstrando todas as tarefas registradas para o usuario na ordem em que foram adicionadas ao programa. Para isso, o laco for for itera sobre a lista de struct e printa todas as tarefas na ordem em que foram adicionadas, mostrando 
         //para o usuario todos os campos que registrou (Prioridade, Categoria, Descrição e Estado), os laços if identificam qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros no armazenamento e leitura dos valores do scanf. A função "fclose(f)" fecha o arquivo .txt para qual as 
@@ -396,9 +397,11 @@ void exportar_tarefas(int cont, struct tarefas *t){
             }
             else if(x == cont - 1 && verifica == 0){
                 printf("Voce nao possui nenhuma tarefa registrada com essa prioridade.\n\n");
+                return 1;
             }
         }
         fclose(f);
+        return 0;
     }
         //Condicao que exporta as tarefas filtrando-as por prioridade. Funciona com um laco 'do while' pedindo ao usuario qual valor de prioridade deseja utilizar para listar as tarefas, caso o usuario entre com algum valor invalido de prioridade, o programa ira pedir o input de novo. O laco for itera sobre a lista de struct  
         //e, por meio da condicao if, exporta para um arquivo .txt todas as tarefas que possuam a prioridade solicitada pelo usuario, com os lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf. A condicao 
@@ -435,9 +438,11 @@ void exportar_tarefas(int cont, struct tarefas *t){
             }
             else if(x == cont - 1 && verifica == 0){
                 printf("Voce nao possui nenhuma tarefa registrada com esse estado.\n\n");
+                return 1;
             }
         }
         fclose(f);
+        return 0;
     }
         //Condicao que exporta as tarefas por estado. Tambem utiliza um laco 'do while' pedindo ao usuario qual valor de estado deseja utilizar para listar as tarefas, caso o usuario entre com algum valor invalido, o programa ira pedir o input de novo. O laco for itera sobre a lista de struct e, por meio da 
         //condicao if, printa todas as tarefas que possuam o estado solicitado pelo usuario, com os lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf. A condicao else if informa o usuario que 
@@ -475,8 +480,10 @@ void exportar_tarefas(int cont, struct tarefas *t){
         
         if(verifica == 0){
             printf("Voce nao possui nenhuma tarefa registrada com essa categoria.\n\n");
+            return 1;
         }
         fclose(f);
+        return 0;
     }
          //Condicao que informa o usuario que nao existe nenhuma tarefa registrada com a categoria que solicitou. A função "fclose(f)" fecha o arquivo .txt para qual as tarefas estão sendo exportadas.
 
@@ -515,10 +522,12 @@ void exportar_tarefas(int cont, struct tarefas *t){
             }
             else if(x == cont - 1 && verifica == 0){
                 printf("Voce nao possui nenhuma tarefa registrada com essa prioridade e com essa categoria simultaneamente.\n\n");
+                return 1;
             }
         }
         fclose(f);
     }
+    return 0;
 
 }
 
