@@ -363,7 +363,8 @@ void exportar_tarefas(int cont, struct tarefas *t){
         limpa_buffer();
 
         //Condicao que exporta as tarefas para um arquivo .txt por ordem de adicao. demonstrando todas as tarefas registradas para o usuario na ordem em que foram adicionadas ao programa. Para isso, o laco for for itera sobre a lista de struct e printa todas as tarefas na ordem em que foram adicionadas, mostrando 
-        //para o usuario todos os campos que registrou (Prioridade, Categoria, Descrição e Estado), os laços if identificam qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros no armazenamento e leitura dos valores do scanf.
+        //para o usuario todos os campos que registrou (Prioridade, Categoria, Descrição e Estado), os laços if identificam qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros no armazenamento e leitura dos valores do scanf. A função "fclose(f)" fecha o arquivo .txt para qual as 
+        //tarefas estão sendo exportadas.
         
         } else if (exportar == 2) {
         int var_prioridade;
@@ -401,7 +402,7 @@ void exportar_tarefas(int cont, struct tarefas *t){
     }
         //Condicao que exporta as tarefas filtrando-as por prioridade. Funciona com um laco 'do while' pedindo ao usuario qual valor de prioridade deseja utilizar para listar as tarefas, caso o usuario entre com algum valor invalido de prioridade, o programa ira pedir o input de novo. O laco for itera sobre a lista de struct  
         //e, por meio da condicao if, exporta para um arquivo .txt todas as tarefas que possuam a prioridade solicitada pelo usuario, com os lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf. A condicao 
-        //else if informa o usuario caso ele nao possua nenhuma tarefa registrada com a prioridade solicitada.
+        //else if informa o usuario caso ele nao possua nenhuma tarefa registrada com a prioridade solicitada. A função "fclose(f)" fecha o arquivo .txt para qual as tarefas estão sendo exportadas.
 
     else if (exportar == 3) {
         int var_estado;
@@ -438,6 +439,9 @@ void exportar_tarefas(int cont, struct tarefas *t){
         }
         fclose(f);
     }
+        //Condicao que exporta as tarefas por estado. Tambem utiliza um laco 'do while' pedindo ao usuario qual valor de estado deseja utilizar para listar as tarefas, caso o usuario entre com algum valor invalido, o programa ira pedir o input de novo. O laco for itera sobre a lista de struct e, por meio da 
+        //condicao if, printa todas as tarefas que possuam o estado solicitado pelo usuario, com os lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf. A condicao else if informa o usuario que 
+        //ele nao possui nenhuma tarefa registrada com o estado solicitado. A função "fclose(f)" fecha o arquivo .txt para qual as tarefas estão sendo exportadas.
 
     else if (exportar == 4){
         char categoria_[100];
@@ -465,11 +469,16 @@ void exportar_tarefas(int cont, struct tarefas *t){
                 }
             }
         }
+            //Condicao que exporta as tarefas filtrando-as por categoria. Solicita ao usuario qual categoria deseja utilizar para filtrar as tarefas e trabalha com dois lacos for, um que itera sobre a lista de struct printando as tarefas com a categoria solicitada pelo usuario e outro que ira realizar esse print de maneira que
+            //as tarefas sejam listadas em ordem de prioridade decrescente (da maior para menor), a condicao if é aplicada para ambos os lacos for, com os lacos if adicionais identificando qual estado o usuario registrou para cada tarefa. A funcao strcmp compara, por meio do laco for, a string inseridada pelo usuario com as da listra de struct, caso ambas sejam iguais, o print poderá ocorrer.. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do 
+            //scanf.
+        
         if(verifica == 0){
             printf("Voce nao possui nenhuma tarefa registrada com essa categoria.\n\n");
         }
         fclose(f);
     }
+         //Condicao que informa o usuario que nao existe nenhuma tarefa registrada com a categoria que solicitou. A função "fclose(f)" fecha o arquivo .txt para qual as tarefas estão sendo exportadas.
 
     else if (exportar == 5){
         int var_prioridade;
@@ -518,18 +527,26 @@ int alterar_tarefas(int cont, struct tarefas *t){
     printf("Digite qual tarefa deseja alterar: \n");
     scanf("%d", &posicao);
     limpa_buffer();
+    //declaracao da variavel posicao, que ira receber do usuario, por meio do scanf, qual tarefa ele deseja alterar. A funcao limpa buffer previne erros de armazenamento e leitura dos valores do scanf.
     if(posicao <= 0 && cont > 1 || posicao > cont && cont > 1){
         printf("Numero invalido! Entre um numero entre 1 e %d\n\n", cont);
         return 1;
     }
+        //Condicao que informa o usuario que entrou com uma posicao invalida, e pede para o usuario entrar com uma posicao dentro do intervalo disponivel.
+        
     else if(posicao <= 0 && cont == 1 || posicao > cont && cont == 1){
         printf("Numero invalido! Voce tem somente 1 tarefa registrada.\n\n");
         return 1;
     }
+
+        //Condicao que informa o usuario que entrou com uma posicao invalida, e o informa que só possui uma tarefa registrada.
+        
     else if(cont == 0){
         printf("Voce nao possui nenhuma tarefa registrada.\n\n");
         return 1;
     }
+
+    //Condicao que informa o usuario que nao possui nenhuma tarefa registrada, assim, nao sendo proceder com a funcao de alterar tarefas.
 
     int var_alterar;
     int verifica = 0;
@@ -543,6 +560,8 @@ int alterar_tarefas(int cont, struct tarefas *t){
             printf("Input invalido. Digite um valor entre 1 e 4.\n");
         }
     } while(var_alterar < 1 || var_alterar > 4);
+
+        //Laco do while que realiza o print do menu da funcao alterar tarefas para o usuario, solicitando qual campo da tarefa ele deseja alterar. Caso o usuario entre com um numero abaixo de 1 ou maior do que 4, o programa o informa e retorna ao menu.
 
     if(var_alterar == 1){
         int var_prioridade;
@@ -564,6 +583,10 @@ int alterar_tarefas(int cont, struct tarefas *t){
             }
         }
     }
+
+        //Condicao que permite ao usuario alterar a prioridade de alguma de suas tarefas. O programa solicita ao usuario a nova prioridade que deseja inserir na tarefa (selecionada pelo input de posicao no inicio da funcao). O laco "do while" previne que o usuario entre com um valor invalido para a variavel
+        //de prioridade (menor do que 0 ou maior do que 10). Apos o usuario escolher a nova prioridade, o laco for identifica a posicao da tarefa na lista e altera o valor de prioridade para o novo valor selecionado pelo usuario. A funcao limpa buffer previne erros de leitura e armazenamento dos valores do scanf.
+        
     else if(var_alterar == 2){
         char categoria_[100];
         printf("Entre com a nova categoria: \n");
@@ -577,6 +600,10 @@ int alterar_tarefas(int cont, struct tarefas *t){
             }
         }
     }
+
+        //Condicao que permite ao usuario alterar a categoria de alguma de suas tarefas. O programa solicita ao usuario a nova categoria que deseja inserir na tarefa (selecionada pelo input de posicao no inicio da funcao). O laco for identifica a tarefa na lista e altera a categoria para a nova string inserida
+        //pelo usuario, processo feito pela funcao strcpy. A funcao limpa buffer previne erros de leitura e armazenamento dos valores do scanf.
+        
     else if (var_alterar == 3){
         char descricao_[300];
         printf("Entre com a nova descricao: \n");
@@ -590,6 +617,10 @@ int alterar_tarefas(int cont, struct tarefas *t){
             }
         }
     }
+
+        //Condicao que permite o usuario alterar a descricao de alguma de suas tarefas. O programa solicita ao usuario a nova descricao que deseja inserir na tarefa (selecionada pelo input de posicao no inicio da funcao). O laco for identifica a tarefa na lista e altera a descricao para a nova string inserida
+        //pelo usuario, processo feito pela funcao strcpy. A funcao limpa buffer previne erros de leitura e armazenamento dos valores do scanf.
+        
     else if (var_alterar == 4){
         int var_estado;
         do{
@@ -611,7 +642,9 @@ int alterar_tarefas(int cont, struct tarefas *t){
   return 0;
 }
 
-//Funcao de alterar tarefas.
+        //Condicao que permite ao usuario alterar o estado de alguma de suas tarefas. O programa solicita ao usuario o novo valor de estado que deseja inserir na tarefa (selecionada pelo input de posicao no inicio da funcao). O laco 'do while' previne que o usuario entre com algum valor invalido para a variavel
+        //de estado (menor do que 1 ou maior do que 3). O laco for identifica a tarefa na lista e altera o estado para o novo valor inserido pelo usuario. A funcao limpa buffer previne erros de leitura e armazenamento dos valores do scanf.
+
 
 int le_binario(struct tarefas *t, int *cont) {
     FILE *arquivo_binario;
@@ -633,10 +666,7 @@ int le_binario(struct tarefas *t, int *cont) {
 }
 
 
-//Funcao que le um arquivo binario com as informacoes registradas pelo usuario assim que o programa é iniciado, evitando assim que as informacoes se percam quando o usuario sai e entra novamente no programa. Para isso,
-//declaramos a variavel "FILE *arquivo_binario*, que, por meio da funcao fopen, abre o arquivo binario com as informacoes escritas pela funcao "escreve_binario" e realiza a leitura, salvando elas na strucutre da maneira
-//como que estavam na utilizacao anterior do programa. O laco while aumenta uma variavel "y", que, na main.c, será recebida pela variavel "cont", que´é o contador de tarefas utilizado em outras funcoes. Por exemplo, caso
-//a funcao "le_binario" leia 3 tarefas, o valor do contador (variavel cont) será atualizado para 3, garantindo o funcionamento normal do programa.
+// Funcao que le todas as informacoes dos clientes de um arquivo binario logo na inicializacao do programa, carregando todos os dados salvos de um uso anterior.
 
 
 void escreve_binario(struct tarefas *t, int cont) {
@@ -659,6 +689,4 @@ void escreve_binario(struct tarefas *t, int cont) {
     }
 
 }
-//Funcao que, ao usuario escolher sair do programa, registra todas as informacoes salvas em um arquivo binario, para que assim, quando o usuario decidir utilizar o programa novamente, suas informacoes estejam salvas.
-//Para fazer isso, declaramos a variavel "FILE *arquivo_binario", assim como na funcao anterior, e ela, por meio da funcao fopen, com o mode "wb", escreve todas as informacoes salvas no programa para um arquivo binario,
-//que é lido ao iniciar programa pela funcao "le_binario", por fim, antes de parar a execucao da programa, a funcao "fclose" fecha o arquivo, agora salvo com todas as informacoes do usuario.
+//Funcao que, ao usuario escolher sair do programa, registra todas as informacoes salvas em um arquivo binario, que é lido pela funcao 'le_binario' na inicializacao do programa.
