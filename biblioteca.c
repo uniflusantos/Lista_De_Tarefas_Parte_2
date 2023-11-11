@@ -361,6 +361,7 @@ int exportar_tarefas(int cont, struct tarefas *t){
             }
         }
         fclose(f);
+        limpa_buffer();
         return 0;
 
         //Condicao que exporta as tarefas para um arquivo .txt por ordem de adicao. demonstrando todas as tarefas registradas para o usuario na ordem em que foram adicionadas ao programa. Para isso, o laco for for itera sobre a lista de struct e printa todas as tarefas na ordem em que foram adicionadas, mostrando 
