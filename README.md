@@ -4,6 +4,9 @@ Três arquivos foram utilizados para o desenvolvimento do código, o arquivo mai
 Para poder executar o código, basta realizar o download dos arquivos ou clonar o repositório pelo Github e executá-lo em qualquer IDE que suporte a linguagem C.
 A execução fornece instruções de como utilizar cada função do programa, e os comentários explicam como cada parte do código funciona.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Project Chores List - Part 2
+
 The part 2 of the to-do-list project consists in a simple program, made on C, that allows the user create a to-do-list and iterate through it in various ways. The program works with 6 functions: Register chores, Delete chores, List chores (with an extra function that allows you to filter which chores you want displayed based on the filters you input), Export chores, Alter chores and a function to exit the program. Additionally, the program also saves all the data in a binary file, which is read when the code is initialised, and can also export the chores to a .txt file if requested by the user.
 Three files were utilised to develop the code. The main.c, which runs the program's menu in a While True loop, and calls the functions developed in the file biblioteca.c. The file biblioteca.c has the code of all functions that are called in the program. And the biblioteca.h contains all the declarations of the aforementioned functions.
 To run the code, just download or clone the repository through Github and execute it in any IDE that supports the C language. The code provides the instruction of how to use each function when started and the comments explain how each part of the code works.
